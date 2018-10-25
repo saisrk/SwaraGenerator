@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 120px;
+        margin-top: 200px;
+      }
+      body {
+        background: #e6b800;
+      }
+      button {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      #button {
+        margin-left: 450px;
+      }
+      #text {
+        margin-left: 480px;
+      }
+      #setinterval {
+        margin-left: 530px;
+      }
+      #interval {
+        margin-left: 450px;
+      }
+      </style>
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="alert alert-danger" id="messages" role="alert" hidden="">
+    </div>
+    <div class="container">
+      <div class="row" id="text">
+        <h1 id=content></h1><br><br>
+      </div>
+      <div class="row" id="button">
+        <button type="button" id="start" class="btn btn-primary">Start</button>
+        <button type="button" id="stop" class="btn btn-danger">Stop</button>
+        <button type="button" id="clear" class="btn btn-secondary">Clear</button>
+      </div><br><br>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-3">
+        <input class="form-control" id="interval" placeholder="Enter in Seconds"><br>
+        <button type="button" id="setinterval" class="btn btn-success">Set Interval</button>
+      </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <script>
+    // Set the date we're counting down to
+    var swaraList = ['Sa', 'Re', 'Ga', 'Ma', 'Pa', 'Dha', 'Ni', 'Sa+']
+    var x;
+    var interval = 1000;
+    document.getElementById("start").addEventListener('click', startShow);
+    document.getElementById("stop").addEventListener('click', stopShow);
+    document.getElementById("setinterval").addEventListener('click', setTimer);
+    document.getElementById("clear").addEventListener('click', clearText);
+    // Update the count down every 1 second
+
+    function clearText() {
+      document.getElementById("content").innerHTML = '';
+    }
+    function startShow () {
+      $('#messages').hide();
+      $("#interval").hide();
+      $("#setinterval").hide();
+      $('#start').hide();
+      $('#clear').hide();
+      x = setInterval(function() {
+        var result = swaraList[Math.floor(Math.random() * swaraList.length)];
+        // If the count down is finished, write some text 
+        // clearInterval(x);
+        document.getElementById("content").innerHTML = result;
+      }, interval);
+    }
+    function stopShow () {
+      $('#messages').hide();
+      $("#interval").show();
+      $("#setinterval").show();
+      $('#clear').show();
+      $('#start').show();
+      if (x) {
+        clearInterval(x);
+      } else {
+        $('#messages').show();
+        console.log("Start to stop");
+        document.getElementsByClassName('alert')[0].innerHTML = "Start to stop"
+      }
+    }
+    function setTimer() {
+      var timer = document.getElementById("interval").value;
+      if (timer) {
+        interval = parseInt(timer) * 1000;
+        console.log(interval);
+      }
+      else {
+        $('#messages').show();
+        console.log("Enter a value");
+        document.getElementsByClassName('alert')[0].text = "Enter value"
+      }
+    }
+    
+
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
